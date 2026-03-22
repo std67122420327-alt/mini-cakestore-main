@@ -1,0 +1,27 @@
+{% if cakes %}
+  <div style="position: absolute; top: 100%; left: 0; right: 0; background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); z-index: 1000; max-height: 400px; overflow-y: auto; margin-top: 10px; border: 1px solid #ffe4f0;">
+    {% for cake in cakes %}
+      <a href="{{ url_for('core.details', id=cake.id) }}" 
+         style="text-decoration: none; color: inherit; display: block; padding: 15px; border-bottom: 1px solid #f8f9fa; transition: all 0.3s ease;" 
+         onmouseover="this.style.background='#fff0f6'; this.style.paddingLeft='20px';" 
+         onmouseout="this.style.background='white'; this.style.paddingLeft='15px';">
+        
+        <div style="display: flex; align-items: center; gap: 15px;">
+          <img src="{{cake.img_url}}" alt="{{cake.name}}" style="width: 50px; height: 50px; border-radius: 10px; object-fit: cover;">
+          
+          <div style="flex: 1;">
+            <h6 style="margin: 0; color: #333; font-weight: 600;">{{cake.name}}</h6>
+            <p style="margin: 5px 0 0 0; color: #ff4d94; font-weight: 700;">{{cake.price}} บาท</p>
+          </div>
+          
+          <i class="bi bi-chevron-right" style="color: #ffb3d1;"></i>
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+
+  <script>
+    // แสดง Dropdown ทันทีเมื่อมีข้อมูล
+    document.getElementById('search-dropdown').style.display = 'block';
+  </script>
+{% endif %}

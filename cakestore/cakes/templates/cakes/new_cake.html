@@ -1,0 +1,75 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+  {{title}}
+{% endblock %}
+
+{% block content %}
+  <div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card" style="border: none; border-radius: 25px; padding: 40px; background: white; box-shadow: 0 15px 40px rgba(0,0,0,0.1);">
+          <div class="mb-4">
+            <h2 class="section-title" style="font-weight: 800; color: #ff4d94;">
+              <i class="bi bi-plus-circle-fill"></i> {{title}}
+            </h2>
+            <p class="text-muted">สร้างสรรค์เมนูเค้กใหม่ๆ ให้ลูกค้าของคุณ</p>
+          </div>
+
+          <form method="post">
+            <div class="mb-4">
+              <label for="name" class="form-label" style="font-weight: 600; color: #333;">
+                <i class="bi bi-cake2" style="color: #ff4d94;"></i> ชื่อเค้ก
+              </label>
+              <input name="name" type="text" class="form-control" id="name" required placeholder="เช่น สตรอว์เบอร์รี่ชอร์ตเค้ก" style="border-radius: 15px; padding: 12px; border: 2px solid #f8f9fa; background-color: #fdfdfd;">
+            </div>
+
+            <div class="mb-4">
+              <label for="price" class="form-label" style="font-weight: 600; color: #333;">
+                <i class="bi bi-tag-fill" style="color: #ff4d94;"></i> ราคา (บาท)
+              </label>
+              <input name="price" type="text" class="form-control" id="price" required placeholder="0.00" style="border-radius: 15px; padding: 12px; border: 2px solid #f8f9fa;">
+            </div>
+
+            <div class="mb-4">
+              <label for="description" class="form-label" style="font-weight: 600; color: #333;">
+                <i class="bi bi-card-text" style="color: #ff4d94;"></i> รายละเอียดความอร่อย
+              </label>
+              <textarea name="description" class="form-control" id="description" rows="4" placeholder="อธิบายรสชาติ ส่วนผสม หรือความพิเศษของเค้กชิ้นนี้..." style="border-radius: 15px; padding: 12px; border: 2px solid #f8f9fa;"></textarea>
+            </div>
+
+            <div class="mb-4">
+              <label for="img_url" class="form-label" style="font-weight: 600; color: #333;">
+                <i class="bi bi-image-fill" style="color: #ff4d94;"></i> URL รูปภาพเค้ก
+              </label>
+              <input name="img_url" type="text" class="form-control" id="img_url" required placeholder="คัดลอกลิงก์รูปภาพสวยๆ มาวางที่นี่" style="border-radius: 15px; padding: 12px; border: 2px solid #f8f9fa;">
+            </div>
+
+            <div class="mb-4">
+              <label for="cake_categories" class="form-label" style="font-weight: 600; color: #333;">
+                <i class="bi bi-collection-fill" style="color: #ff4d94;"></i> หมวดหมู่เค้ก
+              </label>
+              <select name="cake_categories" class="form-select" aria-label="cake_categories" multiple style="border-radius: 15px; padding: 12px; border: 2px solid #f8f9fa;">
+                {% for cat in cake_categories %}
+                  <option value="{{cat.id}}">{{cat.name}}</option>
+                {% endfor %}
+              </select>
+              <div class="mt-2">
+                <small class="text-muted"><i class="bi bi-info-circle"></i> กด Ctrl (หรือ Cmd) ค้างไว้เพื่อเลือกหลายหมวดหมู่</small>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-lg w-100 mt-3" style="background: linear-gradient(135deg, #ff4d94 0%, #ff7eb3 100%); color: white; border: none; border-radius: 15px; padding: 15px; font-weight: 700; transition: 0.3s; box-shadow: 0 5px 15px rgba(255, 77, 148, 0.3);">
+              <i class="bi bi-check-circle-fill"></i>
+              เพิ่มเมนูเค้กลงร้าน
+            </button>
+            
+            <a href="{{ url_for('cake.index') }}" class="btn btn-link w-100 mt-2" style="color: #ff4d94; text-decoration: none; font-weight: 600;">
+              ยกเลิกและกลับหน้าจัดการ
+            </a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

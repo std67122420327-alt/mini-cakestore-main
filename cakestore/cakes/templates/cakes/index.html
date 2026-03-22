@@ -1,0 +1,53 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+  {{title}}
+{% endblock %}
+
+{% block content %}
+  <div class="container mt-4 mb-5">
+    <div class="card" style="border: none; border-radius: 20px; padding: 30px; background: white; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+      <h1 class="section-title mb-4">
+        <i class="bi bi-list-stars"></i> {{title}}
+      </h1>
+      <div class="row mb-4">
+        <div class="col-md-6">
+          <a href="{{ url_for('cake.new_cake') }}" class="btn btn-lg" style="background: linear-gradient(135deg, #ff4d94 0%, #ff7eb3 100%); color: white; border: none; border-radius: 25px; padding: 12px 30px;">
+            <i class="bi bi-plus-circle"></i>
+            เพิ่มเมนูเค้กใหม่
+          </a>
+        </div>
+        <div class="col-md-6"></div>
+      </div>
+      <table class="table table-hover mt-3" style="border-radius: 15px; overflow: hidden;">
+      <thead>
+        <th>#</th>
+        <th>ชื่อเค้ก</th>
+        <th>ราคา</th>
+        <th>วันที่เพิ่ม</th>
+        <th>จัดการ</th>
+      </thead>
+      <tbody>
+        {% for cake in cakes %}
+          <tr>
+            <td>{{loop.index}}</td>
+            <td>{{cake.name}}</td>
+            <td>{{cake.price}} บาท</td>
+            <td>{{cake.created_at.strftime('%d-%m-%Y %H:%M:%S')}}</td>
+            <td>
+              <a href="{{ url_for('cake.edit_cake', id=cake.id) }}" class="btn btn-outline-warning btn-sm" style="border-radius: 10px;">
+                <i class="bi bi-pencil-square"></i> แก้ไข
+              </a>
+              <form action="{{ url_for('cake.delete_cake', id=cake.id) }}" method="POST" class="d-inline" onsubmit="return confirm('คุณต้องการลบเมนูนี้หรือไม่?');">
+                <button type="submit" class="btn btn-outline-danger btn-sm" style="border-radius: 10px;">
+                  <i class="bi bi-trash"></i> ลบ
+                </button>
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    </div>
+  </div>
+{% endblock %}

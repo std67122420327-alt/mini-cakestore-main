@@ -1,0 +1,62 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+  {{title}}
+{% endblock %}
+
+{% block content %}
+  <div class="container mt-5 mb-5">
+    <div class="row">
+      <div class="col-12 mb-4">
+        <h1 class="section-title display-4" style="font-weight: 800; color: #ff4d94;">
+          <i class="bi bi-cake2-fill"></i> {{cake.name}}
+        </h1>
+      </div>
+    </div>
+
+    <div class="row g-5">
+      <div class="col-md-6">
+        <div class="position-relative">
+          <img src="{{cake.img_url}}" alt="{{cake.name}}" class="img-fluid cake-detail-img w-100" style="border-radius: 30px; box-shadow: 0 15px 45px rgba(255, 77, 148, 0.2);">
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card" style="border: none; border-radius: 30px; padding: 40px; background: white; box-shadow: 0 10px 40px rgba(0,0,0,0.05);">
+          
+          <h2 class="section-title" style="font-size: 1.8rem; color: #ff4d94;">
+            <i class="bi bi-stars"></i> รายละเอียดความอร่อย
+          </h2>
+          <p style="font-size: 1.25rem; color: #555; line-height: 1.8; font-weight: 300;">{{cake.description}}</p>
+          
+          <hr class="my-4" style="border-color: #ffe4f0;">
+
+          <h2 class="section-title" style="font-size: 1.8rem; color: #ff4d94;">
+            <i class="bi bi-tag-fill"></i> ราคาพิเศษ
+          </h2>
+          <div class="cake-price" style="font-size: 2rem; padding: 10px 30px;">
+            <i class="bi bi-cash-stack"></i> {{cake.price}} บาท
+          </div>
+          
+          <h2 class="section-title mt-4" style="font-size: 1.5rem; color: #ff4d94;">
+            <i class="bi bi-collection-pink"></i> หมวดหมู่เค้ก
+          </h2>
+          <div class="d-flex flex-wrap gap-2">
+            {% for cat in cake.categories %}
+              <span class="badge cake-category" style="font-size: 1rem; padding: 8px 20px;">
+                <i class="bi bi-patch-check"></i> {{cat.name}}
+              </span>
+            {% endfor %}
+          </div>
+          
+          <div class="mt-5">
+            <a href="{{ url_for('core.index') }}" class="btn btn-lg w-100" style="background: linear-gradient(135deg, #ff4d94 0%, #ff7eb3 100%); color: white; border: none; border-radius: 20px; padding: 15px 30px; font-weight: 700; transition: 0.3s; box-shadow: 0 10px 20px rgba(255, 77, 148, 0.2);">
+              <i class="bi bi-arrow-left-circle"></i> กลับไปเลือกเค้กหน้าแรก
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

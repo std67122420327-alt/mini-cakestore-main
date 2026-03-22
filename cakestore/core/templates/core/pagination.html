@@ -1,0 +1,37 @@
+<nav aria-label="Page navigation example" class="mb-5 mt-4">
+  <ul class="pagination justify-content-center">
+    {% if cakes.has_prev %}
+    <li class="page-item">
+      <a class="page-link" href="{{url_for('core.index', page=cakes.prev_num)}}" style="border-radius: 15px 0 0 15px; border: 2px solid #ff4d94; color: #ff4d94; font-weight: 600;">
+        <i class="bi bi-chevron-left"></i> Previous
+      </a>
+    </li>
+    {% endif %}
+    
+    {% for number in cakes.iter_pages() %}
+        {% if number %}
+          {% if cakes.page != number %}
+          <li class="page-item">
+            <a class="page-link" href="{{url_for('core.index', page=number)}}" style="border: 2px solid #ff4d94; color: #ff4d94; font-weight: 600; margin: 0 2px;">{{number}}</a>
+          </li>
+          {% else %}
+          <li class="page-item active">
+            <span class="page-link" style="background: linear-gradient(135deg, #ff4d94 0%, #ff7eb3 100%); border: none; color: white; font-weight: 700; margin: 0 2px;">{{number}}</span>
+          </li>
+          {% endif %}
+        {% else %}
+          <li class="page-item disabled">
+            <span class="page-link" style="border: 2px solid #e0e0e0; color: #999; margin: 0 2px;">...</span>
+          </li>
+        {% endif %}
+    {% endfor %}
+
+    {% if cakes.has_next %}
+    <li class="page-item">
+      <a class="page-link" href="{{url_for('core.index', page=cakes.next_num)}}" style="border-radius: 0 15px 15px 0; border: 2px solid #ff4d94; color: #ff4d94; font-weight: 600;">
+        Next <i class="bi bi-chevron-right"></i>
+      </a>
+    </li>
+    {% endif %}
+  </ul>
+</nav>
