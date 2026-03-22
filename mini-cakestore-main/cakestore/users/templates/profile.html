@@ -1,0 +1,65 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+  {{title}}
+{% endblock %}
+
+{% block content %}
+  <div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card" style="border: none; border-radius: 25px; padding: 40px; background: white; box-shadow: 0 15px 40px rgba(233, 30, 99, 0.1);">
+          <div class="text-center mb-4">
+            <div style="font-size: 5rem; background: linear-gradient(135deg, #F06292 0%, #E91E63 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+              <i class="bi bi-person-circle"></i>
+            </div>
+            <h2 class="section-title" style="color: #880E4F;">{{title}}</h2>
+          </div>
+          
+          <form class="row g-6" method="post">
+            <div class="col-md-6">
+              <label for="username" class="form-label" style="font-weight: 600; color: #333;">
+                <i class="bi bi-person" style="color: #E91E63;"></i> Username
+              </label>
+              <input disabled value="{{user.username}}" type="text" class="form-control" id="username" style="border-radius: 15px; padding: 12px; background: #fff5f8; border: 2px solid #fce4ec;">
+            </div>
+            
+            <div class="col-md-6">
+              <label for="email" class="form-label" style="font-weight: 600; color: #333;">
+                <i class="bi bi-envelope" style="color: #E91E63;"></i> Email Address
+              </label>
+              <input disabled value="{{user.email}}" type="email" class="form-control" id="email" style="border-radius: 15px; padding: 12px; background: #fff5f8; border: 2px solid #fce4ec;">
+            </div>
+            
+            <div class="col-md-7">
+              <label for="firstname" class="form-label" style="font-weight: 600; color: #333;">
+                <i class="bi bi-person-badge" style="color: #E91E63;"></i> Firstname
+              </label>
+              <input name="firstname" value="{{user.firstname}}" type="text" class="form-control" id="firstname" style="border-radius: 15px; padding: 12px; border: 2px solid #fce4ec;">
+            </div>
+            
+            <div class="col-md-6">
+              <label for="lastname" class="form-label" style="font-weight: 600; color: #333;">
+                <i class="bi bi-person-badge-fill" style="color: #E91E63;"></i> Lastname
+              </label>
+              <input name="lastname" value="{{user.lastname}}" type="text" class="form-control" id="lastname" style="border-radius: 15px; padding: 12px; border: 2px solid #fce4ec;">
+            </div>
+            
+            <div class="col-12 mt-4">
+              <button type="submit" class="btn btn-lg w-100" style="background: linear-gradient(135deg, #F06292 0%, #E91E63 100%); color: white; border: none; border-radius: 15px; padding: 12px; font-weight: 700; box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);">
+                <i class="bi bi-save"></i>
+                Update Profile
+              </button>
+            </div>
+          </form>
+
+          <div class="text-center mt-4">
+             <a href="{{ url_for('users.change_password') }}" style="color: #E91E63; text-decoration: none; font-weight: 600;">
+               <i class="bi bi-key"></i> Change Password?
+             </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
